@@ -1,0 +1,5 @@
+{
+    "java.project.referencedLibraries": [
+        "jssc-2.9.2.jar"
+    ]
+}

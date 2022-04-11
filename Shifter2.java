@@ -26,7 +26,6 @@ public class Shifter2 {
         int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;
         port.setEventsMask(mask);
         port.addEventListener(new MyPortListener() /* defined below */);
-        System.out.println("XXXXX");
     }
 
     public static class MyPortListener implements SerialPortEventListener {
@@ -34,19 +33,15 @@ public class Shifter2 {
 
         @Override
         public void serialEvent(SerialPortEvent event) {
-            System.out.println("Event Started");
             if (event.isRXCHAR()) {
-                System.out.println("eventisRXCHAR");
                 try {
                     buffer = port.readBytes(1 /* read first 10 bytes */);
-                    System.out.println(buffer[0]);
                 } catch (SerialPortException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 for (byte b : buffer) {
                     if (b == (byte) 'U') {
-                        System.out.println("UPPPPPP");
                         robot.keyPress(KeyEvent.VK_I);
                         try {
                             TimeUnit.SECONDS.sleep((long) 0.01);
@@ -56,7 +51,6 @@ public class Shifter2 {
                         }
                     }
                     if (b == (byte) 'D') {
-                        System.out.println("DOWNNNNNN");
                         robot.keyPress(KeyEvent.VK_O);
                         try {
                             TimeUnit.SECONDS.sleep((long) 0.01);
@@ -66,7 +60,6 @@ public class Shifter2 {
                         }
                     }
                     if (b == (byte) 'u') {
-                        System.out.println("UPPPPPP");
                         robot.keyRelease(KeyEvent.VK_I);
                         try {
                             TimeUnit.SECONDS.sleep((long) 0.01);
@@ -76,7 +69,6 @@ public class Shifter2 {
                         }
                     }
                     if (b == (byte) 'd') {
-                        System.out.println("DOWNNNNNN");
                         robot.keyRelease(KeyEvent.VK_O);
                         try {
                             TimeUnit.SECONDS.sleep((long) 0.01);
